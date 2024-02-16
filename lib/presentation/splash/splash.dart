@@ -5,6 +5,7 @@ import 'package:tut_app/presentation/resources/asstes_manager.dart';
 import 'package:tut_app/presentation/resources/color_manager.dart';
 import 'package:tut_app/presentation/resources/constant_manager.dart';
 import 'package:tut_app/presentation/resources/routes_manager.dart';
+import 'package:tut_app/presentation/resources/values_manager.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -34,6 +35,9 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: AppSize.s0,
+      ),
       backgroundColor: ColorManager.primary,
       body: Center(
         child: Image.asset(Assets.splashLogo),
