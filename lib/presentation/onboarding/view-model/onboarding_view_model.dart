@@ -11,21 +11,26 @@ class OnBoardingViewModel extends BaseViewModel
   final StreamController _streamController =
       StreamController<SliderViewModelObject>();
 
+  // A list for slider objects
   late final List<SliderObject> _list;
 
+  // Current index for slider objects
   int _currentIndex = 0;
 
-  @override
-  void dispose() {
-    _streamController.close();
-  }
-
+  // Intialize SliderObject and post it to the View
   @override
   void start() {
     _list = _getSliderData();
     _postDataToView();
   }
 
+  // Once everything in start method is intialized, Close `[_streamController]`
+  @override
+  void dispose() {
+    _streamController.close();
+  }
+
+  // An event to go back to previous slider object
   @override
   int goPrevious() {
     int previousIndex = --_currentIndex;
@@ -35,6 +40,7 @@ class OnBoardingViewModel extends BaseViewModel
     return previousIndex;
   }
 
+  // An event to go next to previous slider object
   @override
   int gotNext() {
     int nextIndex = ++_currentIndex;
@@ -44,19 +50,23 @@ class OnBoardingViewModel extends BaseViewModel
     return nextIndex;
   }
 
+  // This code gets executed on each page changing `Updating the UI`
   @override
   void onPageChanged(int index) {
     _currentIndex = index;
     _postDataToView();
   }
 
+  // Access the Sink to add data to the stream
   @override
   Sink get inputSldierViewObject => _streamController.sink;
 
+  // Main stream that connects StreamBuilder with UI
   @override
-  Stream<SliderViewModelObject> get outSldierViewObject =>
+  Stream<SliderViewModelObject> get outputSliderObject =>
       _streamController.stream.map((event) => event);
 
+  // Accessing Sink to add data to stream and sends it to `UI`
   void _postDataToView() {
     inputSldierViewObject.add(
       SliderViewModelObject(
@@ -66,10 +76,7 @@ class OnBoardingViewModel extends BaseViewModel
     );
   }
 
-  @override
-  Stream<SliderViewModelObject> get outputSliderObject =>
-      _streamController.stream.map((event) => event);
-
+  // List of slider objects
   List<SliderObject> _getSliderData() => [
         SliderObject(
           title: AppStrings.onBoardingTitle1,

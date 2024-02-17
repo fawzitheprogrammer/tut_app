@@ -38,7 +38,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<SliderViewModelObject>(
-      stream: _boardingViewModel.outSldierViewObject,
+      stream: _boardingViewModel.outputSliderObject,
       builder: (context, snapshort) {
         return _getContentWidget(snapshort.data);
       },
@@ -66,7 +66,8 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             _boardingViewModel.onPageChanged(value);
           },
           itemBuilder: (context, index) => Center(
-            child: OnBoardingPage(sliderObject:sliderViewModelObject.sliderObject),
+            child: OnBoardingPage(
+                sliderObject: sliderViewModelObject.sliderObject),
           ),
         ),
         bottomSheet: Container(
@@ -126,7 +127,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           ),
           Row(
             children: List.generate(
-             sliderViewModelObject.numberOfSlider,
+              sliderViewModelObject.numberOfSlider,
               (index) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: AppPadding.p6),
                 child: Container(
