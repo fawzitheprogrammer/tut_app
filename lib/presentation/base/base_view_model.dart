@@ -1,4 +1,5 @@
-abstract class BaseViewModel {}
+abstract class BaseViewModel
+    implements BaseViewModelInput, BaseViewModelOutput {}
 
 abstract class BaseViewModelInput {
   void start(); // To be called when an action must be taken
